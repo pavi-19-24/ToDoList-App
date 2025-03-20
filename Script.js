@@ -1,35 +1,27 @@
-const inputBox = document.getElementById("input-box");
-const ListContainer = document.getElementById("list-Container");
+function AddTask(){
+    const TaskInput = document.getElementById('TaskInput');
+    const taskText = TaskInput.value.trim();
 
-function addTask(){
-    if(inputBox.value === ''){
-        alert("You must have to write something");
-    }else{
-        let li = document.createElement("li");
-        li.innerHTML = inputBox.value;
-        ListContainer.appendChild(li);
+    if(taskText){
+        const task = document.createElement('div');
+        task.classList.add('task');
+        task.textContent = taskText;
 
-        let span = document.createElement("span");
-        span.innerHTML = "\u00d7";
-        li.appendChild(span);
+        document.getElementById('pending').appendChild(task);
+        TaskInput.value='';
     }
-    inputBox.value = '';
-    SaveData()
 }
-ListContainer.addEventListener("click", function(e){
-    if(e.target.tagName == "LI"){
-        e.target.classList.toggle("checked");
-        SaveData()
-    }else if(e.target.tagName == "SPAN"){
-        e.target.parentElement.remove();
-        SaveData()
-    }
-}, false);
 
-function SaveData(){
-    localStorage.setItem("data", ListContainer.innerHTML);
-}
-function showData(){
-    ListContainer.innerHTML = localStorage.getItem("data");
-}
-showData();
+dragula([document.getElementById('pending'), document.getElementById('done')])
+.on('drag',function(el){
+    el.classList.add('dragging');
+})
+.on('drop',function(el){
+    el.classList.remove('dragging');
+})
+.on('over',function(el,container){
+    container.classList.add('over');
+})
+.on('out',function(el,container){
+    container.classList.remove('over');
+});

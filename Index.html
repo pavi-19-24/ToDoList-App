@@ -3,24 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Do List App</title>
-    <link rel="stylesheet" href="Style.css">
+    <title>To-Do List App</title>
+    <link rel="stylesheet" href="Style.css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.css"/>
+
+    
 </head>
 <body>
     <div class="container">
-        <div class="todo-App">
-            <h2>To Do List <img src="images/icon.png"></h2>
-            <div class="row">
-                <input type="text" id="input-box" placeholder="Add Your Task">
-                <button onclick="addTask()">Add</button>
-            </div>
-            <ul id="list-Container">
-                <!-- <li class="checked">Task 1</li>
-                <li>Task 2</li>
-                <li>Task 3</li> -->
-            </ul>
+        <div class="section">
+            <h2>Pending</h2>
+            <div id="pending" class="task-list"></div>
+            <input type="text" id="TaskInput" placeholder="Add a new Task"/>
+            <button onclick="AddTask()">Add Task</button>
+        </div>
+        <div class="section">
+            <h2>Done</h2>
+            <div id="done" class="task-list"></div>
         </div>
     </div>
+    <script>
+        src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.js"
+    </script>
     <script src="Script.js"></script>
 </body>
 </html>
